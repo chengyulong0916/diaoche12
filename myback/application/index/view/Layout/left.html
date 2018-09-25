@@ -1,0 +1,25 @@
+<div class="left">
+		<!-- 工程展示 -->
+		<div class="object">
+			<div class="ltitle">
+				工程展示
+			</div>
+			<ul>
+				{foreach $obj as $v}
+				<li><a href="{:url('/index/Index/news_content')}?nid={$v['id']}">{$v['title']}</a></li>
+				{/foreach}
+				
+			</ul>
+
+		</div>
+
+		<!-- 联系我们 -->
+		<div class="connect">
+			<div class="ltitle">
+				联系我们
+			</div>
+
+
+			<img src="__FR__/images/erweima.jpg" class="erweima">
+		</div>
+	</div>

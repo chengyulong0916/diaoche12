@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="__BC__/css/back.css">
+	<script type="text/javascript" src="__BC__/js/jquery.js"></script>
+	<script type="text/javascript" src="__ROOT__/static/layer/layer.js"></script>
+	<script type="text/javascript" src="__ROOT__/layui/layui.js"></script>
+	<link rel="stylesheet" type="text/css" href="__ROOT__/layui/css/layui.css">
+	<title>栏目管理</title>
+</head>
+<body>
+	<!-- <div class="nav">
+		<ul>
+			<li>第一个标签 <i class="layui-icon layui-unselect layui-tab-close" data-id="1">ဆ</i></li>
+			<li>第二个标签 <i class="layui-icon layui-unselect layui-tab-close" data-id="1">ဆ</i></li>
+			<li>第三个标签 <i class="layui-icon layui-unselect layui-tab-close" data-id="1">ဆ</i></li>
+			<li>第四个标签 <i class="layui-icon layui-unselect layui-tab-close" data-id="1">ဆ</i></li>
+			<li>第五个标签 <i class="layui-icon layui-unselect layui-tab-close" data-id="1">ဆ</i></li>
+			<li>第六个标签 <i class="layui-icon layui-unselect layui-tab-close" data-id="1">ဆ</i></li>
+			<div class="clear"></div>
+		</ul>
+	</div> -->
+	<div class="content-title">
+		<hr class="hr1" width="80px" /><span>栏目管理</span><hr class="hr2" width="90%" />
+	</div>
+	<div class="rule_content con">
+		<!-- 添加权限菜单 -->
+		<div>
+			<a href="javascript:;" src="{:url('/home/Category/add_cate')}" class="add_cate ahref btn-green">添加栏目</a>
+		</div>
+
+		<table border="1" cellpadding="" cellspacing="1">
+			<colgroup>
+				<col width="200">
+				<col width="200">
+				<col width="200">
+				<col width="200">
+				<col width="200">
+				<col width="300">
+			</colgroup>
+			<thead>
+				<tr>
+					<td>序号</td>
+					<td>栏目名称</td>
+					<td>所属模型</td>
+					<td>导航</td>
+					<td>排序</td>
+					<td>操作</td>
+				</tr>
+			</thead>
+			<tbody>
+				{foreach $cate as $vo}
+					<tr>
+						<td>{$vo['id']}</td>
+						<td>{$vo['catename']}</td>
+						<td>
+							{if condition="$vo['model'] eq 0"}
+								单网页
+							{else/}
+								列表页
+							{/if}
+						</td>
+						<td>
+							{if condition="$vo['ismenu'] eq 0"}
+								不显示
+							{else/}
+								显示
+							{/if}
+						</td>
+						<td>{$vo['sort']}</td>
+						<td>
+							{if condition="$vo['model'] eq 0"}  <!--单网页-->
+								<a href="{:url('/home/Category/edit_content?nid=0&cid='.$vo['id'])}" cid="{$vo['id']}" class="btn-small-green eidt_content">管理内容</a>
+							{else /}
+								<a href="{:url('/home/Category/cate_list?cid='.$vo['id'])}" cid="{$vo['id']}" class="btn-small-yellow cate_list">管理列表</a>
+							{/if}
+
+							<a href="{:url('/home/Category/edit_cate?cid='.$vo['id'])}" class="btn-small-blue edit">修改</a>
+							<a href="javascript:;" cid="{$vo['id']}" class="btn-small-red del">删除</a>
+						</td>
+					</tr>
+					{foreach $vo['in'] as $v}
+						<tr>
+						<td>{$v['id']}</td>
+						<td>{$v['catename']}</td>
+						<td>
+							{if condition="$v['model'] eq 0"}
+								单网页
+							{else/}
+								列表页
+							{/if}
+						</td>
+						<td>
+							{if condition="$v['ismenu'] eq 0"}
+								不显示
+							{else/}
+								显示
+							{/if}
+						</td>
+						<td>{$v['sort']}</td>
+						<td>
+							{if condition="$v['model'] eq 0"}  <!--单网页-->
+								<a href="{:url('/home/Category/edit_content?nid=0&cid='.$v['id'])}" cid="{$v['id']}" class="btn-small-green eidt_content">管理内容</a>
+							{else /}
+								<a href="{:url('/home/Category/cate_list?cid='.$v['id'])}" cid="{$vo['id']}" class="btn-small-yellow cate_list">管理列表</a>
+							{/if}
+
+							<a href="{:url('/home/Category/edit_cate?cid='.$v['id'])}" cid="{$v['id']}" class="btn-small-blue edit">修改</a>
+							<a href="javascript:;" cid="{$v['id']}" class="btn-small-red del">删除</a>
+						</td>
+					</tr>
+					{/foreach}
+				{/foreach}
+			</tbody>
+		</table>
+	</div>
+	<script type="text/javascript">
+		$(function(){
+			$('.ahref').click(function(){
+				var src = $(this).attr('src');
+				window.location.href = src;
+			})
+
+
+			//管理内容
+			// $('.eidt_content').click(function(){
+			// 	var cid = $(this).attr('cid');
+			// 	console.log(cid);
+			// })
+
+			//删除
+			$('.del').click(function(){
+				var cid = $(this).attr('cid');
+				layer.confirm('确定要删除此栏目吗？', {btn: ['确定','取消'] //按钮
+					}, function(){
+  					$.ajax({
+  						url:"{:url('/home/Category/del_cate')}",
+  						type:"post",
+  						datatype:"text",
+  						data:{"cid":cid},
+  						success:function(data){
+  							if(data==500){
+  								layer.alert("请先删除此栏目下的子栏目");
+  							}else if(data==404){
+  								layer.alert("网络错误,请重新删除");
+  							}else{
+  								layer.alert("删除成功",function(){
+  									window.location.reload();
+  								});
+  							}
+  						}
+  					})
+				});
+			})
+		})
+	</script>
+</body>
+</html>

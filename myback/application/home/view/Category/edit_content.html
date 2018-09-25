@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="__BC__/css/back.css">
+	<script type="text/javascript" src="__BC__/js/jquery.js"></script>
+	<script type="text/javascript" src="__ROOT__/static/layer/layer.js"></script>
+	<script type="text/javascript" src="__ROOT__/layui/layui.js"></script>
+	<script src="__ROOT__/back/js/jquery.cropit.js"></script>
+	<link rel="stylesheet" type="text/css" href="__ROOT__/layui/css/layui.css">
+	<link rel="stylesheet" type="text/css" href="__ROOT__/static/layer/layer.css">
+	<link rel="stylesheet" href="__ROOT__/back/css/jiantu.css" type="text/css">
+	
+	<title>修改内容</title>
+</head>
+<body>
+	<!-- <div class="nav">
+		<ul>
+			<li>第一个标签 <i class="layui-icon layui-unselect layui-tab-close" data-id="1">ဆ</i></li>
+			<li>第二个标签 <i class="layui-icon layui-unselect layui-tab-close" data-id="1">ဆ</i></li>
+			<li>第三个标签 <i class="layui-icon layui-unselect layui-tab-close" data-id="1">ဆ</i></li>
+			<li>第四个标签 <i class="layui-icon layui-unselect layui-tab-close" data-id="1">ဆ</i></li>
+			<li>第五个标签 <i class="layui-icon layui-unselect layui-tab-close" data-id="1">ဆ</i></li>
+			<li>第六个标签 <i class="layui-icon layui-unselect layui-tab-close" data-id="1">ဆ</i></li>
+			<div class="clear"></div>
+		</ul>
+	</div> -->
+	<div class="content-title">
+		<hr class="hr1" width="80px" /><span>修改内容</span><hr class="hr2" width="90%" />
+	</div>
+	<div class="add_cate">
+		<form>
+			<div>
+				<label>文章标题</label>
+				<input type="text" name="title" class="caname cain" value="{$news['title']}">
+			</div>
+			<div>
+				<label>SEO关键字</label>
+				<input type="text" name="keywords" class="ckeywords cain" value="{$news['keywords']}">
+			</div>
+			<div>
+				<label class="seodes">SEO描述</label>
+				<textarea name="description" class="description">{$news['description']}</textarea>
+			</div>
+			<div>
+				<label>排序</label>
+				<input type="number" name="sort" class="csort cain" value="{$news['sort']}">
+			</div>
+			<div>
+				<!-- 上传缩略图 -->
+				<script type="text/javascript">
+    $(function(){
+      $(".showcxk").click(function(){
+      var h=$(window).height();  
+      var w=$(window).width();
+      h=(h-450)/2;
+      w=(w-360)/2;
+
+      $(".cxk").css('left',w);
+      $(".cxk").css('top',h);
+      $(".gray").fadeIn();
+      $(".cxk").fadeIn();
+      $(document.body).css({
+         "overflow-x":"hidden",
+         "overflow-y":"hidden"
+       });
+      
+      })
+    })
+   
+    function closecxk(){
+      $(".gray").fadeOut();
+      $(".cxk").fadeOut();
+       $(document.body).css({
+   "overflow-x":"scroll",
+   "overflow-y":"scroll"
+ });
+    }
+    </script>
+    <div style="width: 700px; height: 300px;">
+        <p class="wenzi" style="margin-top: 5px;">文章缩略图</p>
+        <div class="tp_img" id="imgg">
+         {if condition="$news['thumb'] neq ''"}
+         	<img style="width: 100%; height: 100%;" src="/thumb/{$news['thumb']}">
+         {/if}
+        </div>
+        <button type="button" class="showcxk">上传图片</button>
+        <button type="button" class="delpic" disabled="false">删除图片</button>
+    </div>
+        
+      <script type="text/javascript">
+      $(function() {
+        $(".delpic").click(function(){
+          document.getElementById("imgg").innerHTML="";
+          // window.location.reload();
+        })
+        $('.image-editor').cropit();
+
+        $('.picform').submit(function() {
+        
+          var imageData = $('.image-editor').cropit('export');
+
+          var imgJson = JSON.stringify(imageData);
+          var index = layer.load(1, {
+            shade: [0.7,'#000'] //0.1透明度的白色背景
+          });
+         $.ajax({
+                    type: "post",
+                    dataType: "text",
+                    url: "{:url('/home/Category/uploadThumb')}",
+                    data: {img:imgJson},
+                    success: function (data) {
+                       layer.closeAll();
+                       if(data==0)
+                       {
+                           layer.msg('上传失败', {icon: 5});
+                       }
+                       else
+                       {     
+                                         
+                        document.getElementById("imgg").innerHTML="<img style='width:100%;height:100%' src='/thumb/"+data+"'> <input type='hidden' name='thumb' class='thumb' value='"+data+"'>";
+                        $(".delpic").removeAttr("disabled");
+                       }
+                       
+                    }
+             }) 
+         return false;
+        });
+      });
+    </script>
+
+			</div>
+		</form>
+			<div>
+				<label>文章内容</label>
+				<script type="text/javascript" src="__UE__/ueditor.config.js"></script>
+				<script type="text/javascript" src="__UE__/ueditor.all.min.js"></script>
+				<script type="text/javascript" src="__UE__/lang/zh-cn/zh-cn.js"></script>
+				<textarea id="editor" name="content"><?php echo htmlspecialchars_decode($news['content']);?></textarea>
+				<script type="text/javascript">
+	              UE.getEditor("editor");//实例化编辑器  传参,id为将要被替换的容器。
+	          </script>
+			</div>
+			<input type="hidden" name="" class="cid" value="{$cid}">
+			<input type="hidden" name="" class="nid" value="{$nid}">
+		<div style="margin-top: 200px;">
+			<a href="javascript:;" class="btn-green edit" style="">修改</a>
+		</div>
+
+	</div>
+	<script type="text/javascript">
+		$(function(){
+			$('.edit').click(function(){
+				var ue = UE.getEditor('editor');
+				var content = ue.getContent();
+				var form = $('form').serialize();
+				var cid = $('.cid').val();
+				var nid = $('.nid').val();
+				cid = cid.split('.')[0];
+				// console.log(nid);return false;
+				form = decodeURIComponent(form, true);
+				$.ajax({
+					url:"{:url('/home/Category/save_content')}",
+					type:"post",
+					datatype:"text",
+					data:{"form":form,"content":content,"cid":cid,"nid":nid},
+					success:function(data){
+						if(data==200){
+							layer.alert('修改成功',function(){
+								window.location.href="{:url('/home/Category/index')}";
+							});
+						}else{
+							layer.alert('添加成功',function(){
+								window.location.href="{:url('/home/Category/index')}";
+							});
+						}
+						// console.log(data);
+					}
+				})
+				// console.log(form);
+			})
+		})
+	</script>
+	<div class="gray" onclick="closecxk();"></div>
+      <div class="cxk">
+      <form class="picform">
+          <div class="image-editor">
+            <input type="file" class="cropit-image-input">
+            <div class="cropit-preview"></div>
+            <div class="image-size-label">
+              修改尺寸
+            </div>
+            <input type="range" class="cropit-image-zoom-input">
+            <input type="hidden" class="hidden-image-data" />
+            <button type="submit" onclick="closecxk();">上传</button>
+          </div>
+          </form>
+      </div>
+</body>
+</html>

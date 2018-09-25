@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="__BC__/css/back.css">
+	<script type="text/javascript" src="__BC__/js/jquery.js"></script>
+	<script type="text/javascript" src="__ROOT__/static/layer/layer.js"></script>
+	<script type="text/javascript" src="__ROOT__/layui/layui.js"></script>
+	<link rel="stylesheet" type="text/css" href="__ROOT__/layui/css/layui.css">
+	<title>权限管理</title>
+</head>
+<body>
+	<!-- <div class="nav">
+		<ul>
+			<li>第一个标签 <i class="layui-icon layui-unselect layui-tab-close" data-id="1">ဆ</i></li>
+			<li>第二个标签 <i class="layui-icon layui-unselect layui-tab-close" data-id="1">ဆ</i></li>
+			<li>第三个标签 <i class="layui-icon layui-unselect layui-tab-close" data-id="1">ဆ</i></li>
+			<li>第四个标签 <i class="layui-icon layui-unselect layui-tab-close" data-id="1">ဆ</i></li>
+			<li>第五个标签 <i class="layui-icon layui-unselect layui-tab-close" data-id="1">ဆ</i></li>
+			<li>第六个标签 <i class="layui-icon layui-unselect layui-tab-close" data-id="1">ဆ</i></li>
+			<div class="clear"></div>
+		</ul>
+	</div> -->
+	<div class="content-title">
+		<hr class="hr1" width="80px" /><span>权限管理</span><hr class="hr2" width="90%" />
+	</div>
+	<div class="rule_content">
+		<!-- 添加权限菜单 -->
+		<div>
+			<a href="javascript:;" src="{:url('/home/Rule/add_rule')}" class="add_rule" aa='123' onclick="turn(this)">添加权限</a>
+		</div>
+
+		<table border="1" cellpadding="" cellspacing="1">
+			<colgroup>
+				<col width="200">
+				<col width="200">
+				<col width="200">
+				<col width="200">
+				<col width="200">
+				<col width="200">
+				<col width="200">
+				<col width="200">
+			</colgroup>
+			<thead>
+				<tr>
+					<td>编号</td>
+					<td>权限名称</td>
+					<td>控制器/方法</td>
+					<td>是否验证权限</td>
+					<td>菜单状态</td>
+					<td>排序</td>
+					<td>操作</td>
+				</tr>
+			</thead>
+			<tbody>
+				{foreach $head as $val}
+					<tr>
+						<td>{$val['id']}</td>
+						<td>{$val['href']}</td>
+						<td style="text-align: left; padding-left: 50px;">{$val['title']}</td>
+						<td>{$val['is_yanzheng']}</td>
+						<td>{$val['menustatus']}</td>
+						<td>{$val['sort']}</td>
+						<td>
+							<a href="javascript:;" class="btn-small-green" src="{:url('/home/Rule/edit_rule',array('id'=>$val['id']))}"  onclick="turn(this)">编辑</a>
+							<a href="javascript:;" class="btn-small-red" src="{:url('/home/Rule/del_rule')}" id="{$val['id']}" onclick="del(this)">删除</a>
+						</td>
+					</tr>
+					{foreach $val['in'] as $vv}
+						<tr>
+							<td>{$vv['id']}</td>
+							<td>{$vv['href']}</td>
+							<td style="text-align: left; padding-left: 50px;">{$vv['title']}</td>
+							<td>{$vv['is_yanzheng']}</td>
+							<td>{$vv['menustatus']}</td>
+							<td>{$vv['sort']}</td>
+							<td>
+								<a href="javascript:;" class="btn-small-green" src="{:url('/home/Rule/edit_rule',array('id'=>$vv['id']))}"  onclick="turn(this)">编辑</a>
+								<a href="javascript:;" class="btn-small-red" src="{:url('/home/Rule/del_rule')}"  id="{$vv['id']}" onclick="del(this)">删除</a>
+							</td>
+						</tr>
+					{/foreach}
+				{/foreach}
+			</tbody>
+		</table>
+	</div>
+	<script type="text/javascript">
+		function turn(e){
+			var aa = $(e);  //js对象转jquery对象
+			var src = aa.attr("src");
+			window.location.href = src;
+		}
+
+		//删除按钮
+		function del(e){
+			var tt = $(e);
+			var src = tt.attr('src');
+			var id = tt.attr('id');
+			// console.log(id);
+			layer.confirm("确定要删除吗？",{
+			  btn: ['删除','取消'] //按钮
+			}, function(){
+			  $.ajax({
+				url:src,
+				type:"post",
+				datatype:"text",
+				data:{"id":id},
+				success:function(data){
+					console.log(data);
+					if(data==1){
+						layer.alert("删除成功",function(){
+							window.location.reload();
+						});
+					}else{
+						layer.alert("删除失败",function(){
+							window.location.reload();
+						});
+					}
+				}
+			 })
+			})
+			
+		}
+	</script>
+</body>
+</html>

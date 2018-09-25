@@ -1,0 +1,28 @@
+
+{include file="Layout/header"/}
+<!-- 页面内容 -->
+<div class="content">
+{include file="Layout/left"/}	
+
+
+	<!-- 正文内容 -->
+	<div class="zhengwen">  
+		<div class="news_list">
+			<ul>
+				{foreach $news_list as $v}
+				<li><a href="{:url('/index/Index/news_content')}?nid={$v['id']}">{$v['sort']}、{$v['title']}</a></li>
+				{/foreach}
+			</ul>
+		</div>
+	</div>
+	<div class="clear"></div>
+
+
+</div>
+
+<!-- 底部 -->
+{include file="Layout/footer"/}
+
+
+</body>
+</html>

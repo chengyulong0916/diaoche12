@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="__ROOT__/layout.css">
+	<link rel="stylesheet" type="text/css" href="__BC__/css/back.css">
+	<script type="text/javascript" src="__BC__/js/jquery.js"></script>
+	<title>玉龙后管CMS</title>
+</head>
+<body>
+	<div class="head">
+		<h2 class="h2_title">玉龙后台管理系统</h2>
+
+		<div class="user">
+			<ul class="user_ul">				
+				<li class="user_li">
+					<ul>
+						<li class="li_title"><img src="__BC__/images/user.jpg" class="head_img">
+							<ul class="list none">
+								<li><a href="javascript:;">修改资料</a></li>
+								<li><a href="javascript:;">退出</a></li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+			</ul>			
+		</div>
+		<!-- <a href=""></a> -->
+	</div>
+	
+	<!-- //左侧菜单 -->
+	<div class="left">
+		<ul class="left_ul">
+			{foreach $rule as $vo}
+				<li><a href="javascript:;" class="total">{$vo['title']}</a>
+					<dl class="left_dl none">
+						{foreach $vo['in'] as $v}
+							<dd><a href="javascript:;" class="ahref" con="{$v['href']}">{$v['title']}</a></dd>
+						{/foreach}
+					</dl>
+				</li>
+			{/foreach}
+			<!-- <li><a href="javascript:;" class="total">第二个菜单</a>
+				<dl class="left_dl none">
+					<dd><a href="javascript:;">四个菜单</a></dd>
+					<dd><a href="javascript:;">五个菜单</a></dd>
+					<dd><a href="javascript:;">六个菜单</a></dd>
+				</dl>
+			</li> -->
+		</ul>
+	</div>
+
+	<div class="content">
+		<iframe src="" class="iframe" id="iframeId" width="100%" height="92%;"></iframe>
+	</div>
+
+	<div class="foot">
+		<p>@玉龙科技技术支持</p>
+	</div>
+	<script type="text/javascript">
+		$(function(){
+			 $('.li_title').click(function(event){
+			    event.stopImmediatePropagation();//取消事件冒泡；
+			    if($('.list').hasClass('none')){
+			    	$('.list').fadeIn();
+			    	$('.list').removeClass('none');
+					$('.li_title label').css({"background":"#CDC9C9","color":"white"});
+			    }else{
+			    	$('.list').fadeOut();
+			    	$('.list').addClass('none');
+					$('.li_title label').css({"background":"#FFCA40","color":"black"});
+			    }
+				
+			}); 
+			$(document).bind("click",function(){
+			    $('.list').fadeOut();
+			    $('.list').addClass('none');
+				$('.li_title label').css({"background":"#FFCA40","color":"black"});
+			})
+
+			// $(window.frames["iframe1"].document).bind("click",function(){
+			//  //    $('.list').fadeOut();
+			//  //    $('.list').addClass('none');
+			// 	// $('.li_title label').css({"background":"#FFCA40","color":"black"});
+			// 	console.log(1111);
+			// })
+
+
+			$('.total').click(function(){
+
+				var display = $(this).next('.left_dl').css('display');
+
+				if(display=="block"){
+
+					$('.left_dl').slideUp();
+
+					return false;
+
+				}else{
+					$('.left_dl').slideUp();
+
+					$(this).next('.left_dl').slideDown();
+
+					return false;
+					
+				}
+
+			})
+
+			$('.ahref').click(function(){
+				var href = $(this).attr('con');
+				$('.iframe').attr('src',href);
+			})
+
+		})
+	</script>
+</body>
+</html>

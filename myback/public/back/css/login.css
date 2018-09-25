@@ -1,0 +1,72 @@
+*{
+	/*-webkit-transition: all 1s linear; -moz-transition: all 1s linear;-o-transition: all 1s linear;*/
+}
+body{
+	/*background-color: black;*/
+	background-image: url(../images/timg2.jpg);
+	background-repeat:no-repeat;
+	background-size: cover;
+}
+.login{
+	width: 26%;
+	position: absolute;
+	top: 30%;
+	left: 50%;
+	margin-left: -13%;
+	padding: 20px;
+	padding-right: -10%;
+	background-color: rgba(1887,255,255,0.3);
+	border: 1px solid #4AB2FF;
+	border-radius: 5px; 
+}
+.login:hover{
+	box-shadow: 0 0 15px #4AB2FF; 
+}
+.username,.password{
+	position: absolute;
+	left: 55%;
+	width: 50%;
+	margin-left: -25%;
+	height: 15%;
+	margin-bottom: 60px;
+	font-size: 15px;
+	border-radius: 5px;
+	padding-left: 3%;
+}
+.username:hover,.password:hover,.yzm:hover{
+	/*border: 0px;*/
+	box-shadow: 0 0 15px #4AB2FF; 
+}
+.aa,.bb{
+	margin-bottom: 20px;
+}
+.aa label,.bb label{
+	display: inline-block;
+	margin-top: 8px;
+	margin-left: 5%;
+	font-size: 18px;
+}
+.sure_log{
+	display: block;
+	text-align: center;
+	width: 60%;
+	height: 40px;
+	line-height: 40px;
+	background-color: #4AB2FF;
+	/*margin: 0 auto;*/
+	margin-left: 27%;
+	margin-top: 6%;
+	color: white;
+	border-radius: 5px;
+}
+#change_captcha{
+	width: 30%;
+	height: 6%;
+	margin-left: 28%;
+}
+.yzm{
+	width: 22%;
+	height: 13%;
+	position: absolute;
+
+}

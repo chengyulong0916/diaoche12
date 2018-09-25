@@ -1,0 +1,90 @@
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td {margin:0;padding:0;font-family: "微软雅黑";} 
+ol,ul {list-style:none} 
+a{text-align: none;}
+table{margin-bottom: 100px;}
+.edui-default{margin-bottom: 0;}
+.con{margin-bottom: 200px;}
+table td{
+	text-align: center;
+}
+.edui-default td{text-align: left;}
+table tr{
+	height: 30px;
+}
+input::-webkit-outer-spin-button,            
+input::-webkit-inner-spin-button{                
+	-webkit-appearance: none !important;            
+}
+
+/*按钮样式*/
+/*绿色*/
+.btn-green{display: inline-block;width: 80px;height: 30px;margin: 20px;text-align: center;line-height: 30px;color: #fff;background-color: #009688;}
+.btn-green:hover{color: #fff;background-color: rgb(48,158,167);}
+/*蓝色*/
+.btn-blue{display: inline-block;width: 80px;height: 30px;margin: 20px;text-align: center;line-height: 30px;color: #fff;background-color: #4AB2FF;}
+.btn-blue:hover{color: #fff;background-color: rgb(74,178,255);}
+/*黄色*/
+.btn-yellow{display: inline-block;width: 80px;height: 30px;margin: 20px;text-align: center;line-height: 30px;color: #fff;background-color: :#FFCA40;}
+.btn-yellow:hover{color: #fff;background-color: rgb(255,198,50);}
+/*红色*/
+.btn-red{display: inline-block;width: 80px;height: 30px;margin: 20px;text-align: center;line-height: 30px;color: #fff;background-color: #FF5722;}
+.btn-red:hover{color: #fff;background-color: rgb(255,120,78);}
+
+/*小一号的按钮*/
+.btn-small-green{display: inline-block; padding: 5px;height: 20px;margin: 10px;text-align: center;line-height: 20px;color: #fff;background-color: #009688;}
+.btn-small-green:hover{color: #fff;background-color: rgb(48,158,167);}
+/*蓝色*/
+.btn-small-blue{display: inline-block; padding: 5px;height: 20px;margin: 10px;text-align: center;line-height: 20px;color: #fff;background-color: #4AB2FF;}
+.btn-small-blue:hover{color: #fff;background-color: rgb(74,178,255);}
+/*黄色*/
+.btn-small-yellow{display: inline-block; padding: 5px;height: 20px;margin: 10px;text-align: center;line-height: 20px;color: #fff;background-color: #FFCA40;}
+.btn-small-yellow:hover{color: #fff;background-color: rgb(255,198,50);}
+/*红色*/
+.btn-small-red{display: inline-block; padding: 5px;height: 20px;margin: 10px;text-align: center;line-height: 20px;color: #fff;background-color: #FF5722;}
+.btn-small-red:hover{color: #fff;background-color: rgb(255,120,78);}
+
+
+.head{position: fixed;width: 100%;height: 50px;background: #000000;}
+.left{position: fixed;width: 10%;height: 100%;background: #000000;left: 0;top: 50px;}
+.foot{position: fixed;width: 90%;height: 50px;bottom: 0;left: 10%;background: #000000;}
+.foot p{color: white;line-height: 50px;}
+.h2_title{position: absolute;color: white;font-size: 1.5em;line-height: 50px;margin-left: 3%;}
+.user{position: absolute;left: 90%;line-height: 40px;cursor: pointer;text-align: center;width: 4%;margin-top: 10px;border-radius: 5px;top: -5px;}
+.head_img{width: 50px;height: 50px;border-radius: 25px;position: relative;top: -5px;}
+.list{margin-top: -15px;line-height: 30px;background-color: #CDC9C9;}
+.list a{font-size: 15px;color: white;}
+.none{display: none;}
+.left_ul a{display: inline-block;width: 100%;text-align: center;color: white;}
+.total{border: 0.1px solid #666666;height: 40px;line-height: 40px;background-color: #333333;}
+.total:hover{box-shadow: 0 0 15px #666666;}
+.left_dl{background-color: #666666;}
+.left_dl dd{/*border: 1px solid white;*/height: 30px;line-height: 30px;}
+.content{position: fixed; left: 10%; top: 50px; width: 90%; height: 100%;}
+.nav{margin-top: 10px;margin-left: 10px;}
+.nav li{float: left;margin-right: 10px;padding: 5px;background-color: #1E9FFF;color: #fff;cursor: pointer;}
+.nav li:hover{background-color: rgb(75,178,255);}
+.clear{clear: both;}
+.rule_content{margin-top: 20px;}
+.rule_content table{margin-left: 20px;/*margin-top: 50px;*/}
+/*添加权限的按钮*/
+.add_rule{display: inline-block;width: 80px;height: 30px;margin: 20px;text-align: center;line-height: 30px;color: #fff;background-color: #009688;}
+.add_rule:hover{color: #fff;background-color: rgb(48,158,167);}
+.add_rule:active{color: #fff;}
+.content-title{margin: 15px;}
+.content-title span{font-size: 1.5em;color: #444444;font-family: "微软雅黑";position: relative;left: 100px;top: 5px;}
+.hr1{position: relative;top: 30px;}
+.hr2{position: relative;left: 200px;top: -17px;}
+.addrule_content div,.add_cate>form>div,.add_cate>div{margin: 20px;}
+.addrule_content label,.add_cate label{border: 1px solid #aaa;display: inline-block;width: 100px;height: 33px;text-align: center;line-height: 30px;background-color: #ddd;}
+.add_cate .cain{width: 300px;height: 31px; padding-left: 5px;position: relative;top: 2px;left: -4px;}
+.add_cate select{width: 150px;height: 34px;position: relative;top: 2px;left: -4px;}
+.add_cate .description{width: 50%;height: 200px; padding: 5px;position: relative;top: 2px;left: -4px;}
+.add_cate .seodes{position: relative;top: -190px;}
+.fname{width: 300px;height: 35px;position: relative;top: 2px;left: -5px;padding-left: 10px;}
+.rname,.cname,.rnum{width: 400px;	height: 31px;position: relative;top: 2px;left: -5px;padding-left: 10px;}
+.rture,.rfalse{margin-left: 5px;position: relative;top: 3px;}
+/*添加文章*/
+.ueditor{margin-left: 20px;}
+#editor{width: 60%; height: 500px;margin-left: 102px;margin-top: -35px;};
+
+/*管理栏目列表页内的文章*/
